@@ -198,7 +198,10 @@ void gp_PullUp(const TPin * Pin)
 		
 		// Set bit 3, reset bit 2: => Pullup/pulldown
 		if(Mode == 0)
+		{
 			GPIO_CTL0(Ports[Pin->Port]) = GPIO_CTL0(Ports[Pin->Port]) & ~(0x04UL << (P * 4)) | (0x08UL << (P * 4));
+			gp_High(Pin);
+		}
     }
     else
     {
@@ -207,7 +210,10 @@ void gp_PullUp(const TPin * Pin)
 		
 		// Set bit 3, reset bit 2: => Pullup/pulldown
 		if(Mode == 0)
+		{
 			GPIO_CTL1(Ports[Pin->Port]) = GPIO_CTL1(Ports[Pin->Port]) & ~(0x04UL << (P * 4)) | (0x08UL << (P * 4));
+			gp_High(Pin);
+		}
     }
 }
 
@@ -222,7 +228,10 @@ void gp_PullDown(const TPin * Pin)
 		
 		// Set bit 3, reset bit 2: => Pullup/pulldown
 		if(Mode == 0)
+		{
 			GPIO_CTL0(Ports[Pin->Port]) = GPIO_CTL0(Ports[Pin->Port]) & ~(0x04UL << (P * 4)) | (0x08UL << (P * 4));
+			gp_Low(Pin);
+		}
     }
     else
     {
@@ -231,7 +240,10 @@ void gp_PullDown(const TPin * Pin)
 		
 		// Set bit 3, reset bit 2: => Pullup/pulldown
 		if(Mode == 0)
+		{
 			GPIO_CTL1(Ports[Pin->Port]) = GPIO_CTL1(Ports[Pin->Port]) & ~(0x04UL << (P * 4)) | (0x08UL << (P * 4));
+			gp_Low(Pin);
+		}
     }
 }
 

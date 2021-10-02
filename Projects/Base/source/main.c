@@ -39,6 +39,7 @@ OF SUCH DAMAGE.
 #include "drivers/activity.h"
 #include "drivers/gpio.h"
 #include "drivers/systick.h"
+#include "drivers/spi.h"
 
 const TPin Led2 = {PC, 0};
 const TPin Led3 = {PC, 2};
@@ -83,6 +84,7 @@ int main(void)
 	gp_Init();
 	timer_Init(1000);
 	act_Init();
+	spi_Init();
 	
 	gp_Output(&Led2);
 	gp_Output(&Led3);
