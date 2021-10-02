@@ -36,9 +36,41 @@ OF SUCH DAMAGE.
 
 #include "gd32f10x.h"
 #include "gd32f107c_eval.h"
-#include "systick.h"
 
+#include "drivers/systick.h"
 #include "drivers/gpio.h"
+
+const TPin Led2 = {PC, 0};
+const TPin Led3 = {PC, 2};
+const TPin Led4 = {PE, 0};
+const TPin Led5 = {PE, 1};
+	
+void led_Blink() {
+	static int Step = 0;
+	
+	switch(Step) {
+		case 0:
+			gp_High(&Led2);
+			break;
+		case 1:
+			gp_High(&Led3);
+			break;
+		case 2:
+			gp_High(&Led4);
+			break;
+		case 3:
+			gp_High(&Led5);
+			break;
+		case 4:
+			gp_Low(&Led2);
+			gp_Low(&Led3);
+			gp_Low(&Led4);
+			gp_Low(&Led5);
+			break;
+	}
+	
+	Step = (Step + 1) % 5;
+}
 
 /*!
     \brief      main function
@@ -48,48 +80,17 @@ OF SUCH DAMAGE.
 */
 int main(void)
 {
-	const TPin Led2 = {PC, 0};
-	const TPin Led3 = {PC, 2};
-	const TPin Led4 = {PE, 0};
-	const TPin Led5 = {PE, 1};
-	
-    systick_config();
-
 	gp_Init();
+	timer_Init(1000);
 	
 	gp_Output(&Led2);
 	gp_Output(&Led3);
 	gp_Output(&Led4);
 	gp_Output(&Led5);
 	
+	timer_AddFunction(10, led_Blink);
+	
     while(1){
-        /* turn on LED2 */
-		gp_High(&Led2);
-        /* insert 200 ms delay */
-        delay_1ms(200);
-
-        /* turn on LED3 */
-		gp_High(&Led3);
-        /* insert 200 ms delay */
-        delay_1ms(200);
-        
-        /* turn on LED4 */
-		gp_High(&Led4);
-        /* insert 200 ms delay */
-        delay_1ms(200);
-        
-        /* turn on LED5 */
-		gp_High(&Led5);
-        /* insert 200 ms delay */
-        delay_1ms(200);
-
-        /* turn off LEDs */
-		gp_Low(&Led2);
-		gp_Low(&Led3);
-		gp_Low(&Led4);
-		gp_Low(&Led5);
-
-        /* insert 200 ms delay */
-        delay_1ms(200);
+		timer_Main();
     }
 }

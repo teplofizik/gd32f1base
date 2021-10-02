@@ -394,11 +394,6 @@
               <FilePath>.\source\main.c</FilePath>
             </File>
             <File>
-              <FileName>systick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\systick.c</FilePath>
-            </File>
-            <File>
               <FileName>RTE_Components.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\RTE_Components.h</FilePath>
@@ -646,6 +641,16 @@
               <FileName>gpio.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\drivers\gpio.h</FilePath>
+            </File>
+            <File>
+              <FileName>systick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\drivers\systick.c</FilePath>
+            </File>
+            <File>
+              <FileName>systick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\drivers\systick.h</FilePath>
             </File>
           </Files>
         </Group>

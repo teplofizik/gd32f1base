@@ -35,7 +35,6 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32f10x_it.h"
-#include "systick.h"
 
 /*!
     \brief      this function handles NMI exception
@@ -127,15 +126,4 @@ void DebugMon_Handler(void)
 */
 void PendSV_Handler(void)
 {
-}
-
-/*!
-    \brief      this function handles SysTick exception
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void SysTick_Handler(void)
-{
-    delay_decrement();
 }
