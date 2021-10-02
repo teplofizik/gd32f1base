@@ -652,6 +652,16 @@
               <FileType>5</FileType>
               <FilePath>.\source\drivers\systick.h</FilePath>
             </File>
+            <File>
+              <FileName>activity.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\drivers\activity.c</FilePath>
+            </File>
+            <File>
+              <FileName>activity.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\source\drivers\activity.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

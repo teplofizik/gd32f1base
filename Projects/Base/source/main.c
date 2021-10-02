@@ -35,10 +35,10 @@ OF SUCH DAMAGE.
 */
 
 #include "gd32f10x.h"
-#include "gd32f107c_eval.h"
 
-#include "drivers/systick.h"
+#include "drivers/activity.h"
 #include "drivers/gpio.h"
+#include "drivers/systick.h"
 
 const TPin Led2 = {PC, 0};
 const TPin Led3 = {PC, 2};
@@ -82,6 +82,7 @@ int main(void)
 {
 	gp_Init();
 	timer_Init(1000);
+	act_Init();
 	
 	gp_Output(&Led2);
 	gp_Output(&Led3);
