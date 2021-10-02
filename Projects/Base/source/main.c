@@ -38,6 +38,8 @@ OF SUCH DAMAGE.
 #include "gd32f107c_eval.h"
 #include "systick.h"
 
+#include "drivers/gpio.h"
+
 /*!
     \brief      main function
     \param[in]  none
@@ -46,44 +48,46 @@ OF SUCH DAMAGE.
 */
 int main(void)
 {
+	const TPin Led2 = {PC, 0};
+	const TPin Led3 = {PC, 2};
+	const TPin Led4 = {PE, 0};
+	const TPin Led5 = {PE, 1};
+	
     systick_config();
 
-    /* enable the LEDs clock */
-    rcu_periph_clock_enable(RCU_GPIOC);
-    rcu_periph_clock_enable(RCU_GPIOE);
-
-    /* configure LEDs GPIO port */ 
-    gpio_init(GPIOC, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_0 | GPIO_PIN_2);
-    gpio_init(GPIOE, GPIO_MODE_OUT_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_0 | GPIO_PIN_1);
-
-    /* reset LEDs GPIO pin */
-    gpio_bit_reset(GPIOC, GPIO_PIN_0 | GPIO_PIN_2);
-    gpio_bit_reset(GPIOE, GPIO_PIN_0 | GPIO_PIN_1);
-
+	gp_Init();
+	
+	gp_Output(&Led2);
+	gp_Output(&Led3);
+	gp_Output(&Led4);
+	gp_Output(&Led5);
+	
     while(1){
         /* turn on LED2 */
-        gpio_bit_set(GPIOC, GPIO_PIN_0);
+		gp_High(&Led2);
         /* insert 200 ms delay */
         delay_1ms(200);
 
         /* turn on LED3 */
-        gpio_bit_set(GPIOC, GPIO_PIN_2);
+		gp_High(&Led3);
         /* insert 200 ms delay */
         delay_1ms(200);
         
         /* turn on LED4 */
-        gpio_bit_set(GPIOE, GPIO_PIN_0);
+		gp_High(&Led4);
         /* insert 200 ms delay */
         delay_1ms(200);
         
         /* turn on LED5 */
-        gpio_bit_set(GPIOE, GPIO_PIN_1);
+		gp_High(&Led5);
         /* insert 200 ms delay */
         delay_1ms(200);
 
         /* turn off LEDs */
-        gpio_bit_reset(GPIOC, GPIO_PIN_0 | GPIO_PIN_2);
-        gpio_bit_reset(GPIOE, GPIO_PIN_0 | GPIO_PIN_1);
+		gp_Low(&Led2);
+		gp_Low(&Led3);
+		gp_Low(&Led4);
+		gp_Low(&Led5);
 
         /* insert 200 ms delay */
         delay_1ms(200);
