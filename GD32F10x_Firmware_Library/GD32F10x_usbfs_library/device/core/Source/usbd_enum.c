@@ -528,6 +528,7 @@ static usb_reqsta _usb_std_getdescriptor (usb_core_driver *udev, usb_req *req)
         case USB_DESCTYPE_DEV_QUALIFIER:
         case USB_DESCTYPE_OTHER_SPD_CONFIG:
         case USB_DESCTYPE_ITF_POWER:
+			
             break;
 
         case USB_DESCTYPE_BOS:

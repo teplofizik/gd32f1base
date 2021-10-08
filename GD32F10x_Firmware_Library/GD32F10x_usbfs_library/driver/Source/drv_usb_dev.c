@@ -49,10 +49,10 @@ static const uint8_t EP0_MAXLEN[4] = {
 /* USB endpoint Tx FIFO size */
 static uint16_t USBFS_TX_FIFO_SIZE[USBFS_MAX_EP_COUNT] = 
 {
-    (uint16_t)TX0_FIFO_FS_SIZE,
-    (uint16_t)TX1_FIFO_FS_SIZE,
-    (uint16_t)TX2_FIFO_FS_SIZE,
-    (uint16_t)TX3_FIFO_FS_SIZE
+    (uint16_t)0,
+    (uint16_t)0,
+    (uint16_t)0,
+    (uint16_t)0
 };
 
 #endif /* USBFS_CORE */
@@ -84,6 +84,11 @@ usb_status usb_devcore_init (usb_core_driver *udev)
         /* set Rx FIFO size */
         usb_set_rxfifo(&udev->regs, RX_FIFO_FS_SIZE);
 
+		USBFS_TX_FIFO_SIZE[0] = (uint16_t)TX0_FIFO_FS_SIZE;
+		USBFS_TX_FIFO_SIZE[1] = (uint16_t)TX1_FIFO_FS_SIZE;
+		USBFS_TX_FIFO_SIZE[2] = (uint16_t)TX2_FIFO_FS_SIZE;
+		USBFS_TX_FIFO_SIZE[3] = (uint16_t)TX3_FIFO_FS_SIZE;
+		
         /* set endpoint 1 to 3's TX FIFO length and RAM address */
         for (i = 0U; i < USBFS_MAX_EP_COUNT; i++) {
             usb_set_txfifo(&udev->regs, i, USBFS_TX_FIFO_SIZE[i]);
