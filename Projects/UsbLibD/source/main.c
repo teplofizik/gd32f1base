@@ -43,7 +43,7 @@ OF SUCH DAMAGE.
 
 #include "usb/libd/usb_device.h"
 #include "usb/libd/cdc/usb_cdc.h"
-
+//#include "usb/libd/keyboard/usb_keyboardhid.h"
 
 const TPin Led2 = {PC, 0};
 const TPin Led3 = {PC, 2};
@@ -83,8 +83,9 @@ void led_Blink() {
 void sendChar() {
 	if(ud_IsConfigured())
 	{
-	//	cdc_WriteChar('0');
-	//	cdc_WriteChar('\n');
+		cdc_WriteChar('0');
+		cdc_WriteChar('\n');
+	//	hid_SendKey(0x04);
 	}
 }
 
