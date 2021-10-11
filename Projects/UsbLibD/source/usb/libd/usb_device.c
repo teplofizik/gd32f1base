@@ -167,10 +167,10 @@ static uint8_t dev_init    (usb_dev *udev, uint8_t config_index)
 	EPBuffer[Index].Data = malloc(AUSB_MAX_EP0_BUFFER_SIZE);
 	EPBuffer[Index].Size = AUSB_MAX_EP0_BUFFER_SIZE;
 	
-	Index++;
 	/* initialize the data TX endpoint */
 	while(ep_desc)
 	{
+		Index++;
 		EPBuffer[Index].Endpoint = ep_desc->bEndpointAddress;
 		EPBuffer[Index].Data = malloc(ep_desc->wMaxPacketSize);
 		EPBuffer[Index].Size = ep_desc->wMaxPacketSize;
@@ -181,10 +181,9 @@ static uint8_t dev_init    (usb_dev *udev, uint8_t config_index)
 		
 		if((ep_desc->bEndpointAddress & 0x80) == 0) // OUT 
 		{
-			recv_endpoint(udev, ep_desc);
+			usbd_ep_recev (udev, ep_desc->bEndpointAddress, EPBuffer[Index].Data, EPBuffer[Index].Size);
 		}
 		
-		Index++;
 		ep_desc = GetEndpointDescriptor(Index);
 	}
 	
@@ -300,7 +299,7 @@ static void FillStringDescriptor(usb_desc_str * string, const char * Text)
 	size_t i = 0;
 	
 	string->header.bDescriptorType = USB_DESCTYPE_STR;
-	string->header.bLength = size;
+	string->header.bLength = 2 + 2*size;
 	for(i = 0; i < size; i++)
 		string->unicode_string[i] = Text[i];
 }
