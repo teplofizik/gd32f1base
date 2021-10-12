@@ -14,7 +14,7 @@
 	#define USB_VID                         0x0483
 	#define USB_PID                         0x5740
 
-	#define USB_MANUFACTURER_STRING         "STMicroelectronics"
+	#define USB_MANUFACTURER_STRING         "GigaDevice"
 	#define USB_PRODUCT_STRING              "STM32 Virtual ComPort"
 	#define USB_SERIALNUMBER_STRING         "00000000050C"
 

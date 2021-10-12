@@ -970,11 +970,6 @@
               <FilePath>.\source\usb\libd\hid\usb_class_conf.h</FilePath>
             </File>
             <File>
-              <FileName>usb_desc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\source\usb\libd\hid\usb_desc.c</FilePath>
-            </File>
-            <File>
               <FileName>usb_customhid.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\usb\libd\hid\usb_customhid.c</FilePath>
@@ -983,6 +978,11 @@
               <FileName>usb_customhid.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\source\usb\libd\hid\usb_customhid.h</FilePath>
+            </File>
+            <File>
+              <FileName>usb_customhid_desc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\usb\libd\hid\usb_customhid_desc.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -980,9 +980,9 @@
               <FilePath>.\source\usb\libd\cdc\usb_class_conf.h</FilePath>
             </File>
             <File>
-              <FileName>usb_desc.c</FileName>
+              <FileName>usb_cdc_desc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\source\usb\libd\cdc\usb_desc.c</FilePath>
+              <FilePath>.\source\usb\libd\cdc\usb_cdc_desc.c</FilePath>
             </File>
           </Files>
         </Group>

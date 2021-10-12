@@ -85,7 +85,7 @@ uint8_t CustomHID_ReportDescriptor[] =
     0x85, 0x04,                    //   REPORT_ID (4)
     0x09, 0x04,                    //   USAGE (Vendor Usage 4)
     0x75, 0x08,                    //   REPORT_SIZE (8)
-    0x95, RPT4_COUNT,                    //   REPORT_COUNT (N)
+    0x95, RPT4_COUNT,              //   REPORT_COUNT (N)
     0x81, 0x82,                    //   INPUT (Data,Var,Abs,Vol)
     0xc0                           // END_COLLECTION
 }; /* CustomHID_ReportDescriptor */
@@ -136,7 +136,7 @@ uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ] =
   0x03,          /* bmAttributes: Interrupt endpoint */
   HID_IN_PACKET_SIZE, /* wMaxPacketSize */
   0x00,
-  0x0A,          /* bInterval: Polling Interval (10 ms) */
+  0x01,          /* bInterval: Polling Interval (10 ms) */
   /* 34 */
 
   0x07,  	/* bLength: Endpoint Descriptor size */

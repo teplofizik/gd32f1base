@@ -83,19 +83,19 @@ void led_Blink() {
 	gp_Set(&Led5, ud_IsConfigured());
 }
 
+uint8_t SendBuffer[5];
 static void sendReport()
 {
 	uint8_t L1 = L1Value ? 1 : 0;
 	uint8_t L2 = L2Value ? 1 : 0;
 	
-	uint8_t Buffer[5];
-	Buffer[0] = 4;
-	Buffer[1] = 0; // btn 1
-	Buffer[2] = 0; // btn 2
-	Buffer[3] = L1 | (L2 << 1); // Led mask
-	Buffer[4] = 0;
+	SendBuffer[0] = 4;
+	SendBuffer[1] = 0; // btn 1
+	SendBuffer[2] = 0; // btn 2
+	SendBuffer[3] = L1 | (L2 << 1); // Led mask
+	SendBuffer[4] = StoredValue;
 	
-	hid_SendReport(Buffer, sizeof(Buffer));
+	hid_SendReport(SendBuffer, sizeof(SendBuffer));
 }
 
 void sendChar() {
@@ -149,7 +149,7 @@ int main(void)
 	gp_Output(&Led5);
 	
 	timer_AddFunction(10, led_Blink);
-	timer_AddFunction(1, sendChar);
+	timer_AddFunction(1000, sendChar);
 	
 	hid_SetHandler(onHidData);
 	
